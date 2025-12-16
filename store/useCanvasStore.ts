@@ -56,10 +56,15 @@ export const useCanvasStore = create<CanvasStore>()(
   // Initialize canvas
   initCanvas: (width: number, height: number) => {
     const newCanvas = createEmptyCanvas(width, height);
+    const maxDisplaySize = 512;
+    const maxDimension = Math.max(width, height);
+    const newPixelSize = Math.max(1, Math.floor(maxDisplaySize / maxDimension));
+
     set({
       canvas: newCanvas,
       canvasWidth: width,
       canvasHeight: height,
+      pixelSize: newPixelSize,
       history: [{ canvas: newCanvas, timestamp: Date.now() }],
       historyIndex: 0,
     });
@@ -126,10 +131,16 @@ export const useCanvasStore = create<CanvasStore>()(
   // Set canvas size
   setCanvasSize: (width: number, height: number) => {
     const newCanvas = createEmptyCanvas(width, height);
+    // 최대 표시 크기를 512px로 유지하고 픽셀 크기 자동 조정
+    const maxDisplaySize = 512;
+    const maxDimension = Math.max(width, height);
+    const newPixelSize = Math.max(1, Math.floor(maxDisplaySize / maxDimension));
+
     set({
       canvas: newCanvas,
       canvasWidth: width,
       canvasHeight: height,
+      pixelSize: newPixelSize,
       history: [{ canvas: newCanvas, timestamp: Date.now() }],
       historyIndex: 0,
     });
