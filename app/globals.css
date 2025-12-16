@@ -4,10 +4,43 @@
   --font-pixel: var(--font-pixel);
 }
 
+/* Base Styles */
 body {
   font-family: system-ui, -apple-system, sans-serif;
 }
 
+/* Pixel Font */
 .font-pixel {
   font-family: var(--font-pixel);
+}
+
+/* Custom Button Styles */
+.btn-primary {
+  @apply px-4 py-2 bg-green-600 hover:bg-green-500 text-white font-pixel transition-colors;
+}
+
+.btn-secondary {
+  @apply px-4 py-2 bg-gray-700 hover:bg-gray-600 text-gray-200 font-pixel transition-colors;
+}
+
+.btn-danger {
+  @apply px-3 py-2 bg-red-900 hover:bg-red-800 text-red-200 font-pixel transition-colors;
+}
+
+/* Panel Styles */
+.panel {
+  @apply bg-gray-800 border border-gray-700 p-4;
+}
+
+/* Common Text Sizes */
+.text-pixel-button {
+  @apply text-sm font-pixel;
+}
+
+.text-pixel-label {
+  @apply text-sm font-pixel text-gray-400;
+}
+
+.text-pixel-body {
+  @apply text-base font-pixel;
 }
