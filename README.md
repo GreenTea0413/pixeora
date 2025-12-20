@@ -1,5 +1,7 @@
 # Pixeora
 
+🎨 **Live Demo**: [https://pixeora.vercel.app/](https://pixeora.vercel.app/)
+
 웹 기반 픽셀 아트 에디터
 
 ## 만든 이유
