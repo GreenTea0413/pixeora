@@ -5,11 +5,11 @@ import { useLanguageStore } from '@/store/useLanguageStore';
 import { Pencil, Eraser, PaintBucket, Pipette, Undo, Redo, Trash2 } from 'lucide-react';
 import type { Tool } from '@/types';
 
-const tools: { name: Tool; icon: React.ComponentType<{ size?: number }> }[] = [
-  { name: 'pen', icon: Pencil },
-  { name: 'eraser', icon: Eraser },
-  { name: 'fill', icon: PaintBucket },
-  { name: 'eyedropper', icon: Pipette },
+const tools: { name: Tool; icon: React.ComponentType<{ size?: number }>; shortcut: string }[] = [
+  { name: 'pen', icon: Pencil, shortcut: 'Q' },
+  { name: 'eraser', icon: Eraser, shortcut: 'W' },
+  { name: 'fill', icon: PaintBucket, shortcut: 'E' },
+  { name: 'eyedropper', icon: Pipette, shortcut: 'R' },
 ];
 
 export default function Toolbar() {
@@ -41,7 +41,7 @@ export default function Toolbar() {
               key={tool.name}
               onClick={() => setTool(tool.name)}
               className={`
-                flex items-center justify-center gap-1.5 px-2 py-1.5 transition-all text-xs font-pixel
+                flex items-center justify-between gap-2 px-2 py-1.5 transition-all text-xs font-pixel
                 ${
                   currentTool === tool.name
                     ? 'bg-green-600 text-white'
@@ -49,8 +49,11 @@ export default function Toolbar() {
                 }
               `}
             >
-              <Icon size={16} />
-              <span>{getToolLabel(tool.name)}</span>
+              <div className="flex items-center gap-1.5">
+                <Icon size={16} />
+                <span>{getToolLabel(tool.name)}</span>
+              </div>
+              <span className="text-[10px] opacity-60">{tool.shortcut}</span>
             </button>
           );
         })}
@@ -64,17 +67,23 @@ export default function Toolbar() {
         <h3 className="text-xs font-pixel text-neutral-400 mb-1">{t.actions.title}</h3>
         <button
           onClick={undo}
-          className="px-2 py-1.5 bg-neutral-800 hover:bg-neutral-700 text-neutral-300 text-xs font-pixel transition-colors flex items-center justify-center gap-1.5"
+          className="px-2 py-1.5 bg-neutral-800 hover:bg-neutral-700 text-neutral-300 text-xs font-pixel transition-colors flex items-center justify-between gap-2"
         >
-          <Undo size={16} />
-          <span>{t.actions.undo}</span>
+          <div className="flex items-center gap-1.5">
+            <Undo size={16} />
+            <span>{t.actions.undo}</span>
+          </div>
+          <span className="text-[10px] opacity-60">A</span>
         </button>
         <button
           onClick={redo}
-          className="px-2 py-1.5 bg-neutral-800 hover:bg-neutral-700 text-neutral-300 text-xs font-pixel transition-colors flex items-center justify-center gap-1.5"
+          className="px-2 py-1.5 bg-neutral-800 hover:bg-neutral-700 text-neutral-300 text-xs font-pixel transition-colors flex items-center justify-between gap-2"
         >
-          <Redo size={16} />
-          <span>{t.actions.redo}</span>
+          <div className="flex items-center gap-1.5">
+            <Redo size={16} />
+            <span>{t.actions.redo}</span>
+          </div>
+          <span className="text-[10px] opacity-60">S</span>
         </button>
         <button
           onClick={clearCanvas}

@@ -40,6 +40,8 @@ interface CanvasStore {
   setPan: (panX: number, panY: number) => void;
   resetView: () => void;
   loadProject: (project: SavedProject) => void;
+  getPixelColor: (x: number, y: number) => string | null;
+  fillArea: (x: number, y: number, newColor: string) => void;
 }
 
 const createEmptyCanvas = (width: number, height: number): Canvas => {
@@ -214,6 +216,64 @@ export const useCanvasStore = create<CanvasStore>()(
       zoom: 1,
       panX: 0,
       panY: 0,
+    });
+  },
+
+  // Get pixel color (for eyedropper)
+  getPixelColor: (x: number, y: number) => {
+    const { canvas, canvasWidth, canvasHeight } = get();
+
+    if (x < 0 || x >= canvasWidth || y < 0 || y >= canvasHeight) {
+      return null;
+    }
+
+    return canvas[y][x].color;
+  },
+
+  // Fill area (flood fill algorithm)
+  fillArea: (x: number, y: number, newColor: string) => {
+    const { canvas, canvasWidth, canvasHeight } = get();
+
+    if (x < 0 || x >= canvasWidth || y < 0 || y >= canvasHeight) return;
+
+    const targetColor = canvas[y][x].color;
+
+    // Don't fill if the color is the same
+    if (targetColor === newColor) return;
+
+    // Create a copy of the canvas
+    const newCanvas = canvas.map(row => row.map(pixel => ({ ...pixel })));
+
+    // BFS flood fill
+    const queue: [number, number][] = [[x, y]];
+    const visited = new Set<string>();
+
+    while (queue.length > 0) {
+      const [currentX, currentY] = queue.shift()!;
+      const key = `${currentX},${currentY}`;
+
+      if (visited.has(key)) continue;
+      if (currentX < 0 || currentX >= canvasWidth || currentY < 0 || currentY >= canvasHeight) continue;
+      if (newCanvas[currentY][currentX].color !== targetColor) continue;
+
+      visited.add(key);
+      newCanvas[currentY][currentX].color = newColor;
+
+      // Add adjacent pixels
+      queue.push([currentX + 1, currentY]);
+      queue.push([currentX - 1, currentY]);
+      queue.push([currentX, currentY + 1]);
+      queue.push([currentX, currentY - 1]);
+    }
+
+    // Add to history
+    const newHistory = get().history.slice(0, get().historyIndex + 1);
+    newHistory.push({ canvas: newCanvas, timestamp: Date.now() });
+
+    set({
+      canvas: newCanvas,
+      history: newHistory,
+      historyIndex: newHistory.length - 1,
     });
   },
     }),

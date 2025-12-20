@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Canvas from '@/components/Canvas';
 import Toolbar from '@/components/Toolbar';
 import ColorPicker from '@/components/ColorPicker';
@@ -16,7 +16,7 @@ import type { SavedProject } from '@/types';
 
 export default function Home() {
   const { t } = useLanguageStore();
-  const { loadProject } = useCanvasStore();
+  const { loadProject, setTool, undo, redo } = useCanvasStore();
   const [isSaveModalOpen, setIsSaveModalOpen] = useState(false);
   const [isProjectsModalOpen, setIsProjectsModalOpen] = useState(false);
   const [isExportModalOpen, setIsExportModalOpen] = useState(false);
@@ -24,6 +24,54 @@ export default function Home() {
   const handleLoadProject = (project: SavedProject) => {
     loadProject(project);
   };
+
+  // Keyboard shortcuts
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Ignore if typing in input or textarea
+      const target = e.target as HTMLElement;
+      if (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA') {
+        return;
+      }
+
+      // Ignore if any modal is open
+      if (isSaveModalOpen || isProjectsModalOpen || isExportModalOpen) {
+        return;
+      }
+
+      const key = e.key.toLowerCase();
+
+      switch (key) {
+        case 'q':
+          setTool('pen');
+          e.preventDefault();
+          break;
+        case 'w':
+          setTool('eraser');
+          e.preventDefault();
+          break;
+        case 'e':
+          setTool('fill');
+          e.preventDefault();
+          break;
+        case 'r':
+          setTool('eyedropper');
+          e.preventDefault();
+          break;
+        case 'a':
+          undo();
+          e.preventDefault();
+          break;
+        case 's':
+          redo();
+          e.preventDefault();
+          break;
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [setTool, undo, redo, isSaveModalOpen, isProjectsModalOpen, isExportModalOpen]);
 
   return (
     <div className="min-h-screen bg-black">
