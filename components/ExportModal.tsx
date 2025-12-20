@@ -13,7 +13,7 @@ interface ExportModalProps {
 export default function ExportModal({ isOpen, onClose }: ExportModalProps) {
   const [format, setFormat] = useState<ExportFormat>('png');
   const [scale, setScale] = useState<ExportScale>(1);
-  const [filename, setFilename] = useState('pixeora-art');
+  const [filename, setFilename] = useState('pixelket-art');
   const [isExporting, setIsExporting] = useState(false);
 
   const { canvas, canvasWidth, canvasHeight } = useCanvasStore();
@@ -70,7 +70,7 @@ export default function ExportModal({ isOpen, onClose }: ExportModalProps) {
         height: canvasHeight,
         format,
         scale,
-        filename: filename.trim() || 'pixeora-art',
+        filename: filename.trim() || 'pixelket-art',
       });
 
       // Close modal after a short delay
@@ -153,7 +153,7 @@ export default function ExportModal({ isOpen, onClose }: ExportModalProps) {
               value={filename}
               onChange={(e) => setFilename(e.target.value)}
               onKeyDown={handleKeyDown}
-              placeholder="pixeora-art"
+              placeholder="pixelket-art"
               disabled={isExporting}
               className="w-full px-3 py-2 bg-neutral-800 border border-neutral-700 rounded text-white text-sm focus:outline-none focus:border-neutral-500 disabled:opacity-50"
               maxLength={50}

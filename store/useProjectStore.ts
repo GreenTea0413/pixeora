@@ -95,7 +95,7 @@ export const useProjectStore = create<ProjectStore>()(
       },
     }),
     {
-      name: 'pixeora-projects',
+      name: 'pixelket-projects',
     }
   )
 );

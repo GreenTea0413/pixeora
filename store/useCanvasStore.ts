@@ -218,7 +218,7 @@ export const useCanvasStore = create<CanvasStore>()(
   },
     }),
     {
-      name: 'pixeora-canvas',
+      name: 'pixelket-canvas',
       partialize: (state) => ({ savedColors: state.savedColors }),
     }
   )

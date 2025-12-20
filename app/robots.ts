@@ -8,6 +8,6 @@ export default function robots(): MetadataRoute.Robots {
         allow: '/',
       },
     ],
-    sitemap: 'https://pixeora.vercel.app/sitemap.xml',
+    sitemap: 'https://pixelket.vercel.app/sitemap.xml',
   };
 }

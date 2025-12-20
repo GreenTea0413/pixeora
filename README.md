@@ -1,6 +1,6 @@
-# Pixeora
+# Pixelket
 
-🎨 **Live Demo**: [https://pixeora.vercel.app/](https://pixeora.vercel.app/)
+🎨 **Live Demo**: [https://pixelket.vercel.app/](https://pixelket.vercel.app/)
 
 웹 기반 픽셀 아트 에디터
 
@@ -21,8 +21,8 @@
 
 ```bash
 # 저장소 클론
-git clone https://github.com/GreenTea0413/pixeora.git
-cd pixeora
+git clone https://github.com/GreenTea0413/pixelket.git
+cd pixelket
 
 # 의존성 설치
 npm install

@@ -18,7 +18,7 @@ export const useLanguageStore = create<LanguageStore>()(
       },
     }),
     {
-      name: 'pixeora-language',
+      name: 'pixelket-language',
     }
   )
 );

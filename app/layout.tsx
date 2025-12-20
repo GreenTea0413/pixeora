@@ -9,7 +9,7 @@ const pixelFont = Press_Start_2P({
 });
 
 export const metadata: Metadata = {
-  title: "Pixeora - Free Pixel Art Editor",
+  title: "Pixelket - Free Pixel Art Editor",
   description: "Create beautiful pixel art with our free online editor. Modern UI, easy to use, perfect for game developers and artists.",
   keywords: ["pixel art", "pixel art editor", "픽셀 아트", "도트 그림", "무료 에디터", "온라인 에디터", "game dev", "pixel graphics"],
   authors: [{ name: "GreenTea" }],
@@ -17,26 +17,26 @@ export const metadata: Metadata = {
   verification: {
     google: 'lcnJKA7vmJdAeeH_r_Sj_uWnJt-qj0_kyd5Om9o3imA',
   },
-  metadataBase: new URL('https://pixeora.vercel.app'),
+  metadataBase: new URL('https://pixelket.vercel.app'),
   openGraph: {
     type: 'website',
     locale: 'ko_KR',
-    url: 'https://pixeora.vercel.app',
-    title: 'Pixeora - Free Pixel Art Editor',
+    url: 'https://pixelket.vercel.app',
+    title: 'Pixelket - Free Pixel Art Editor',
     description: 'Create beautiful pixel art with our free online editor. Modern UI, easy to use, perfect for game developers and artists.',
-    siteName: 'Pixeora',
+    siteName: 'Pixelket',
     images: [
       {
         url: '/opengraph-image.png',
         width: 1200,
         height: 630,
-        alt: 'Pixeora - Free Pixel Art Editor',
+        alt: 'Pixelket - Free Pixel Art Editor',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Pixeora - Free Pixel Art Editor',
+    title: 'Pixelket - Free Pixel Art Editor',
     description: 'Create beautiful pixel art with our free online editor. Modern UI, easy to use, perfect for game developers and artists.',
     images: ['/opengraph-image.png'],
   },

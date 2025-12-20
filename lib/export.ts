@@ -21,7 +21,7 @@ export function exportCanvas({
   height,
   format,
   scale,
-  filename = 'pixeora-art'
+  filename = 'pixelket-art'
 }: ExportOptions): void {
   // Create a temporary canvas element
   const tempCanvas = document.createElement('canvas');

@@ -2,8 +2,8 @@ import { MetadataRoute } from 'next';
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'Pixeora - Free Pixel Art Editor',
-    short_name: 'Pixeora',
+    name: 'Pixelket - Free Pixel Art Editor',
+    short_name: 'Pixelket',
     description: 'Create beautiful pixel art with our free online editor',
     start_url: '/',
     display: 'standalone',
