@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import type { Canvas, Tool, HistoryState } from '@/types';
+import type { Canvas, Tool, HistoryState, SavedProject } from '@/types';
 
 interface CanvasStore {
   // Canvas state
@@ -39,6 +39,7 @@ interface CanvasStore {
   setZoom: (zoom: number) => void;
   setPan: (panX: number, panY: number) => void;
   resetView: () => void;
+  loadProject: (project: SavedProject) => void;
 }
 
 const createEmptyCanvas = (width: number, height: number): Canvas => {
@@ -194,6 +195,26 @@ export const useCanvasStore = create<CanvasStore>()(
   // Reset view
   resetView: () => {
     set({ zoom: 1, panX: 0, panY: 0 });
+  },
+
+  // Load project
+  loadProject: (project: SavedProject) => {
+    const maxDisplaySize = 800;
+    const maxDimension = Math.max(project.canvasWidth, project.canvasHeight);
+    const newPixelSize = Math.max(1, Math.floor(maxDisplaySize / maxDimension));
+
+    set({
+      canvas: project.canvas,
+      canvasWidth: project.canvasWidth,
+      canvasHeight: project.canvasHeight,
+      pixelSize: newPixelSize,
+      savedColors: project.savedColors || [],
+      history: [{ canvas: project.canvas, timestamp: Date.now() }],
+      historyIndex: 0,
+      zoom: 1,
+      panX: 0,
+      panY: 0,
+    });
   },
     }),
     {

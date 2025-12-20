@@ -1,15 +1,30 @@
 'use client';
 
+import { useState } from 'react';
 import Canvas from '@/components/Canvas';
 import Toolbar from '@/components/Toolbar';
 import ColorPicker from '@/components/ColorPicker';
 import CanvasSettings from '@/components/CanvasSettings';
 import LanguageSelector from '@/components/LanguageSelector';
+import SaveModal from '@/components/SaveModal';
+import ProjectsModal from '@/components/ProjectsModal';
+import ExportModal from '@/components/ExportModal';
 import { useLanguageStore } from '@/store/useLanguageStore';
-import { Download, Save } from 'lucide-react';
+import { useCanvasStore } from '@/store/useCanvasStore';
+import { Download, Save, FolderOpen } from 'lucide-react';
+import type { SavedProject } from '@/types';
 
 export default function Home() {
   const { t } = useLanguageStore();
+  const { loadProject } = useCanvasStore();
+  const [isSaveModalOpen, setIsSaveModalOpen] = useState(false);
+  const [isProjectsModalOpen, setIsProjectsModalOpen] = useState(false);
+  const [isExportModalOpen, setIsExportModalOpen] = useState(false);
+
+  const handleLoadProject = (project: SavedProject) => {
+    loadProject(project);
+  };
+
   return (
     <div className="min-h-screen bg-black">
       {/* Header */}
@@ -24,11 +39,24 @@ export default function Home() {
             </div>
             <div className="flex gap-2 items-center">
               <LanguageSelector />
-              <button className="px-4 py-2 bg-green-600 hover:bg-green-500 text-white text-xs font-pixel transition-colors flex items-center justify-center gap-1.5">
+              <button
+                onClick={() => setIsProjectsModalOpen(true)}
+                className="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white text-xs font-pixel transition-colors flex items-center justify-center gap-1.5"
+              >
+                <FolderOpen size={16} />
+                <span>불러오기</span>
+              </button>
+              <button
+                onClick={() => setIsExportModalOpen(true)}
+                className="px-4 py-2 bg-green-600 hover:bg-green-500 text-white text-xs font-pixel transition-colors flex items-center justify-center gap-1.5"
+              >
                 <Download size={16} />
                 <span>{t.header.export}</span>
               </button>
-              <button className="px-4 py-2 bg-neutral-800 hover:bg-neutral-700 text-neutral-200 text-xs font-pixel transition-colors flex items-center justify-center gap-1.5">
+              <button
+                onClick={() => setIsSaveModalOpen(true)}
+                className="px-4 py-2 bg-neutral-800 hover:bg-neutral-700 text-neutral-200 text-xs font-pixel transition-colors flex items-center justify-center gap-1.5"
+              >
                 <Save size={16} />
                 <span>{t.header.save}</span>
               </button>
@@ -64,6 +92,21 @@ export default function Home() {
       <footer className="mt-16 py-8 text-center text-xs text-neutral-600 font-pixel">
         <p>{t.footer.text}</p>
       </footer>
+
+      {/* Modals */}
+      <SaveModal
+        isOpen={isSaveModalOpen}
+        onClose={() => setIsSaveModalOpen(false)}
+      />
+      <ProjectsModal
+        isOpen={isProjectsModalOpen}
+        onClose={() => setIsProjectsModalOpen(false)}
+        onLoadProject={handleLoadProject}
+      />
+      <ExportModal
+        isOpen={isExportModalOpen}
+        onClose={() => setIsExportModalOpen(false)}
+      />
     </div>
   );
 }
