@@ -39,30 +39,41 @@ export default function Home() {
         return;
       }
 
+      // Ignore if Ctrl/Cmd/Alt is pressed (to avoid conflicts with browser shortcuts)
+      if (e.ctrlKey || e.metaKey || e.altKey) {
+        return;
+      }
+
       const key = e.key.toLowerCase();
 
       switch (key) {
         case 'q':
+          console.log('Shortcut: Pen tool selected');
           setTool('pen');
           e.preventDefault();
           break;
         case 'w':
+          console.log('Shortcut: Eraser tool selected');
           setTool('eraser');
           e.preventDefault();
           break;
         case 'e':
+          console.log('Shortcut: Fill tool selected');
           setTool('fill');
           e.preventDefault();
           break;
         case 'r':
+          console.log('Shortcut: Eyedropper tool selected');
           setTool('eyedropper');
           e.preventDefault();
           break;
         case 'a':
+          console.log('Shortcut: Undo');
           undo();
           e.preventDefault();
           break;
         case 's':
+          console.log('Shortcut: Redo');
           redo();
           e.preventDefault();
           break;
