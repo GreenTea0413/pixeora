@@ -188,12 +188,20 @@ export default function Canvas() {
     }
   };
 
+  // Prevent context menu and maintain cursor
+  const handleContextMenu = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    return false;
+  };
+
   return (
     <div
       ref={containerRef}
       className="relative overflow-auto bg-neutral-800 rounded"
       style={{ maxWidth: '1400px', maxHeight: '900px', width: '100%', height: '700px' }}
       onWheel={handleWheel}
+      onContextMenu={handleContextMenu}
     >
       <div
         className="flex items-center justify-center p-8"
@@ -202,6 +210,7 @@ export default function Canvas() {
           minWidth: '100%',
           minHeight: '100%',
         }}
+        onContextMenu={handleContextMenu}
       >
         <canvas
           ref={canvasRef}
@@ -218,7 +227,7 @@ export default function Canvas() {
           onMouseMove={handleMouseMove}
           onMouseUp={handleMouseUp}
           onMouseLeave={handleMouseLeave}
-          onContextMenu={(e) => e.preventDefault()}
+          onContextMenu={handleContextMenu}
         />
       </div>
     </div>
