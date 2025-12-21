@@ -86,7 +86,7 @@ export const useCanvasStore = create<CanvasStore>()(
 
   // Set pixel color
   setPixel: (x: number, y: number, color: string) => {
-    const { canvas, canvasWidth, canvasHeight } = get();
+    const { canvas, canvasWidth, canvasHeight, history, historyIndex } = get();
 
     if (x < 0 || x >= canvasWidth || y < 0 || y >= canvasHeight) return;
 
@@ -96,15 +96,35 @@ export const useCanvasStore = create<CanvasStore>()(
       )
     );
 
-    // Add to history
-    const newHistory = get().history.slice(0, get().historyIndex + 1);
-    newHistory.push({ canvas: newCanvas, timestamp: Date.now() });
+    const now = Date.now();
+    const MERGE_THRESHOLD = 300; // Merge changes within 300ms
 
-    set({
-      canvas: newCanvas,
-      history: newHistory,
-      historyIndex: newHistory.length - 1,
-    });
+    // Check if we should merge with the last history entry
+    const shouldMerge =
+      history.length > 0 &&
+      historyIndex === history.length - 1 &&
+      now - history[historyIndex].timestamp < MERGE_THRESHOLD;
+
+    if (shouldMerge) {
+      // Update the last history entry instead of creating a new one
+      const newHistory = [...history];
+      newHistory[historyIndex] = { canvas: newCanvas, timestamp: now };
+
+      set({
+        canvas: newCanvas,
+        history: newHistory,
+      });
+    } else {
+      // Add new history entry
+      const newHistory = history.slice(0, historyIndex + 1);
+      newHistory.push({ canvas: newCanvas, timestamp: now });
+
+      set({
+        canvas: newCanvas,
+        history: newHistory,
+        historyIndex: newHistory.length - 1,
+      });
+    }
   },
 
   // Clear canvas
