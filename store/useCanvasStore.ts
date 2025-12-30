@@ -70,9 +70,9 @@ export const useCanvasStore = create<CanvasStore>()(
   // Initialize canvas
   initCanvas: (width: number, height: number) => {
     const newCanvas = createEmptyCanvas(width, height);
-    const maxDisplaySize = 800;
     const maxDimension = Math.max(width, height);
-    const newPixelSize = Math.max(1, Math.floor(maxDisplaySize / maxDimension));
+    // 256 이상이면 픽셀 크기 5px 고정, 작은 캔버스는 자동 계산
+    const newPixelSize = maxDimension >= 256 ? 5 : Math.max(1, Math.floor(1800 / maxDimension));
 
     set({
       canvas: newCanvas,
@@ -165,10 +165,9 @@ export const useCanvasStore = create<CanvasStore>()(
   // Set canvas size
   setCanvasSize: (width: number, height: number) => {
     const newCanvas = createEmptyCanvas(width, height);
-    // 최대 표시 크기를 800px로 유지하고 픽셀 크기 자동 조정
-    const maxDisplaySize = 800;
     const maxDimension = Math.max(width, height);
-    const newPixelSize = Math.max(1, Math.floor(maxDisplaySize / maxDimension));
+    // 256 이상이면 픽셀 크기 5px 고정, 작은 캔버스는 자동 계산
+    const newPixelSize = maxDimension >= 256 ? 5 : Math.max(1, Math.floor(1800 / maxDimension));
 
     set({
       canvas: newCanvas,
@@ -221,9 +220,9 @@ export const useCanvasStore = create<CanvasStore>()(
 
   // Load project
   loadProject: (project: SavedProject) => {
-    const maxDisplaySize = 800;
     const maxDimension = Math.max(project.canvasWidth, project.canvasHeight);
-    const newPixelSize = Math.max(1, Math.floor(maxDisplaySize / maxDimension));
+    // 256 이상이면 픽셀 크기 5px 고정, 작은 캔버스는 자동 계산
+    const newPixelSize = maxDimension >= 256 ? 5 : Math.max(1, Math.floor(1800 / maxDimension));
 
     set({
       canvas: project.canvas,

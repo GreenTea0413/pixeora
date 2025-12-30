@@ -25,7 +25,7 @@ export const ko = {
   },
   help: {
     title: '도움말',
-    zoom: 'Ctrl/Cmd + 휠: 확대/축소',
+    zoom: 'Alt/Cmd + 휠: 확대/축소',
     pan: 'Shift + 드래그: 화면 이동',
   },
   canvasSettings: {

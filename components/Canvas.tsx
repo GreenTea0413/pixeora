@@ -45,9 +45,9 @@ export default function Canvas() {
     // Clear canvas
     ctx.clearRect(0, 0, canvasWidth * pixelSize, canvasHeight * pixelSize);
 
-    // Draw grid
+    // Draw grid - adjust line width based on zoom to remain visible when zoomed
     ctx.strokeStyle = '#e5e5e5';
-    ctx.lineWidth = 0.5;
+    ctx.lineWidth = Math.max(0.5, 1 / zoom);
 
     for (let i = 0; i <= canvasWidth; i++) {
       ctx.beginPath();
@@ -72,7 +72,7 @@ export default function Canvas() {
         }
       });
     });
-  }, [canvas, canvasWidth, canvasHeight, pixelSize]);
+  }, [canvas, canvasWidth, canvasHeight, pixelSize, zoom]);
 
   // Get pixel coordinates with zoom adjustment
   const getPixelCoordinates = (e: React.MouseEvent<HTMLCanvasElement>) => {
@@ -87,10 +87,10 @@ export default function Canvas() {
     return { x, y };
   };
 
-  // Handle zoom with Ctrl/Cmd + mouse wheel
+  // Handle zoom with Alt + mouse wheel
   const handleWheel = (e: React.WheelEvent<HTMLDivElement>) => {
-    // Only zoom when Ctrl or Cmd is pressed
-    if (e.ctrlKey || e.metaKey) {
+    // Only zoom when Alt is pressed
+    if (e.altKey) {
       e.preventDefault();
       const delta = e.deltaY > 0 ? 0.9 : 1.1;
       const newZoom = zoom * delta;
@@ -199,7 +199,7 @@ export default function Canvas() {
     <div
       ref={containerRef}
       className="relative overflow-auto bg-neutral-800 rounded"
-      style={{ maxWidth: '1400px', maxHeight: '900px', width: '100%', height: '700px' }}
+      style={{ maxWidth: '1400px', maxHeight: '700px', width: '100%', height: '700px' }}
       onWheel={handleWheel}
       onContextMenu={handleContextMenu}
     >

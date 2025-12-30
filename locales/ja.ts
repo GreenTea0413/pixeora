@@ -25,7 +25,7 @@ export const ja = {
   },
   help: {
     title: 'ヘルプ',
-    zoom: 'Ctrl/Cmd + ホイール: ズーム',
+    zoom: 'Alt/Cmd + ホイール: ズーム',
     pan: 'Shift + ドラッグ: パン',
   },
   canvasSettings: {

@@ -25,7 +25,7 @@ export const en = {
   },
   help: {
     title: 'HELP',
-    zoom: 'Ctrl/Cmd + Wheel: Zoom',
+    zoom: 'Alt/Cmd + Wheel: Zoom',
     pan: 'Shift + Drag: Pan',
   },
   canvasSettings: {

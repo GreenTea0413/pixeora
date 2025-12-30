@@ -2,9 +2,9 @@
 
 import { useState, useEffect } from 'react';
 import Canvas from '@/components/Canvas';
-import Toolbar from '@/components/Toolbar';
 import ColorPicker from '@/components/ColorPicker';
 import CanvasSettings from '@/components/CanvasSettings';
+import ShortcutsGuide from '@/components/ShortcutsGuide';
 import LanguageSelector from '@/components/LanguageSelector';
 import SaveModal from '@/components/SaveModal';
 import ProjectsModal from '@/components/ProjectsModal';
@@ -39,7 +39,7 @@ export default function Home() {
         return;
       }
 
-      // Ignore if Ctrl/Cmd/Alt is pressed (to avoid conflicts with browser shortcuts)
+      // Ignore if Alt/Cmd/Alt is pressed (to avoid conflicts with browser shortcuts)
       if (e.ctrlKey || e.metaKey || e.altKey) {
         return;
       }
@@ -119,23 +119,24 @@ export default function Home() {
 
       {/* Main Content */}
       <main className="w-full px-4 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-[240px_1fr_240px] gap-3 max-w-[1800px] mx-auto">
-          {/* Left Sidebar - Tools */}
-          <div className="lg:sticky lg:top-8 lg:self-start space-y-6">
-            <Toolbar />
-            <CanvasSettings />
-          </div>
+        <div className="max-w-[1800px] mx-auto space-y-4">
+          {/* Shortcuts Guide */}
+          <ShortcutsGuide />
 
-          {/* Center - Canvas */}
-          <div className="flex flex-col items-center">
-            <div className="bg-neutral-900 rounded-lg border border-neutral-700 p-2">
-              <Canvas />
+          {/* Main Layout */}
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_240px] gap-3">
+            {/* Center - Canvas */}
+            <div className="flex flex-col items-center">
+              <div className="bg-neutral-900 rounded-lg border border-neutral-700 p-2">
+                <Canvas />
+              </div>
             </div>
-          </div>
 
-          {/* Right Sidebar - Color Picker */}
-          <div className="lg:sticky lg:top-8 lg:self-start">
-            <ColorPicker />
+            {/* Right Sidebar - Color Picker + Canvas Settings */}
+            <div className="lg:sticky lg:top-8 lg:self-start space-y-3">
+              <ColorPicker />
+              <CanvasSettings />
+            </div>
           </div>
         </div>
       </main>

@@ -25,7 +25,7 @@ export const zh = {
   },
   help: {
     title: '帮助',
-    zoom: 'Ctrl/Cmd + 滚轮: 缩放',
+    zoom: 'Alt/Cmd + 滚轮: 缩放',
     pan: 'Shift + 拖动: 平移',
   },
   canvasSettings: {
