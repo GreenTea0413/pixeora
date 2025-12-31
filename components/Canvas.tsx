@@ -10,6 +10,7 @@ export default function Canvas() {
   const [isPanning, setIsPanning] = useState(false);
   const [lastPanPoint, setLastPanPoint] = useState({ x: 0, y: 0 });
   const [containerSize, setContainerSize] = useState({ width: 1160, height: 600 });
+  const [currentWidth, setCurrentWidth] = useState(0);
 
   const {
     canvas,
@@ -39,6 +40,7 @@ export default function Canvas() {
   useEffect(() => {
     const updateContainerSize = () => {
       const width = window.innerWidth;
+      setCurrentWidth(width); // 디버깅용
 
       if (width >= 1600) {
         // PC 크기

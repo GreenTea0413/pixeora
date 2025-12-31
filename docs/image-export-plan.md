@@ -63,7 +63,7 @@ exportImage: (options = {}) => {
   exportCanvasAsImage(canvas, canvasWidth, canvasHeight, pixelSize, {
     scale: 1,
     includeGrid: false,
-    filename: `pixeora-${Date.now()}.png`,
+    filename: `PIXELKET-${Date.now()}.png`,
     ...options,
   });
 },
@@ -162,7 +162,7 @@ const { exportImage } = useCanvasStore();
 ## 참고 코드 구조
 
 ```
-pixeora/
+PIXELKET/
 ├── app/
 │   └── page.tsx (Export 버튼)
 ├── components/

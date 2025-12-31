@@ -118,7 +118,7 @@ export default function Home() {
       </header>
 
       {/* Main Content */}
-      <main className="w-full px-4 py-8">
+      <main className="w-full px-2 py-8">
         <div className="max-w-[1800px] mx-auto space-y-4">
           {/* Shortcuts Guide */}
           <ShortcutsGuide />
@@ -142,7 +142,7 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-      <footer className="mt-16 py-8 text-center text-xs text-neutral-600 font-pixel">
+      <footer className="mt-2 py-8 text-center text-xs text-neutral-600 font-pixel">
         <p>{t.footer.text}</p>
       </footer>
 

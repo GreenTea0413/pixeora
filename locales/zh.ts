@@ -1,6 +1,6 @@
 export const zh = {
   header: {
-    title: 'PIXEORA',
+    title: 'PIXELKET',
     subtitle: '像素艺术编辑器',
     export: '导出',
     save: '保存',
@@ -38,6 +38,6 @@ export const zh = {
     apply: '应用',
   },
   footer: {
-    text: 'PIXEORA',
+    text: 'PIXELKET',
   },
 };

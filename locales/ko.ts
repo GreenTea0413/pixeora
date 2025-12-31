@@ -1,6 +1,6 @@
 export const ko = {
   header: {
-    title: 'PIXEORA',
+    title: 'PIXELKET',
     subtitle: '픽셀 아트 에디터',
     export: '내보내기',
     save: '저장',
@@ -38,6 +38,6 @@ export const ko = {
     apply: '적용',
   },
   footer: {
-    text: 'PIXEORA',
+    text: 'PIXELKET',
   },
 };

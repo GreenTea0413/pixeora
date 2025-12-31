@@ -1,6 +1,6 @@
 export const en = {
   header: {
-    title: 'PIXEORA',
+    title: 'PIXELKET',
     subtitle: 'Pixel Art Editor',
     export: 'EXPORT',
     save: 'SAVE',
@@ -38,6 +38,6 @@ export const en = {
     apply: 'APPLY',
   },
   footer: {
-    text: 'PIXEORA',
+    text: 'PIXELKET',
   },
 };
