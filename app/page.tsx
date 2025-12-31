@@ -80,10 +80,9 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-black">
       {/* Header */}
-      <header className="bg-neutral-900 border-b border-neutral-700">
-        <div className="max-w-7xl mx-auto px-4 py-6">
-          <div className="flex items-center justify-between">
-            <div>
+      <header className="bg-neutral-900 border-b border-neutral-700 px-4 py-6">
+        <div className="flex items-center justify-between px-2">
+            <div className="flex flex-col">
               <h1 className="text-2xl font-pixel text-white tracking-wider">
                 {t.header.title}
               </h1>
@@ -114,11 +113,10 @@ export default function Home() {
               </button>
             </div>
           </div>
-        </div>
       </header>
 
       {/* Main Content */}
-      <main className="w-full px-2 py-4">
+      <main className="w-full px-3 py-4">
         <div className="max-w-[1800px] mx-auto space-y-2">
           {/* Shortcuts Guide */}
           <ShortcutsGuide />
