@@ -40,7 +40,7 @@ export default function Canvas() {
     const updateContainerSize = () => {
       const width = window.innerWidth;
 
-      if (width >= 1280) {
+      if (width >= 1440) {
         // PC 크기
         setContainerSize({ width: 1400, height: 700 });
       } else {
