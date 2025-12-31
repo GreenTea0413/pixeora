@@ -9,7 +9,7 @@ export default function Canvas() {
   const [isDrawing, setIsDrawing] = useState(false);
   const [isPanning, setIsPanning] = useState(false);
   const [lastPanPoint, setLastPanPoint] = useState({ x: 0, y: 0 });
-  const [containerSize, setContainerSize] = useState({ width: 1024, height: 500 });
+  const [containerSize, setContainerSize] = useState({ width: 960, height: 500 });
 
   const {
     canvas,
@@ -40,12 +40,12 @@ export default function Canvas() {
     const updateContainerSize = () => {
       const width = window.innerWidth;
 
-      if (width >= 1440) {
+      if (width >= 1500) {
         // PC 크기
         setContainerSize({ width: 1400, height: 700 });
       } else {
         // 노트북 크기
-        setContainerSize({ width: 1024, height: 500 });
+        setContainerSize({ width: 960, height: 500 });
       }
     };
 
