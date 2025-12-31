@@ -42,7 +42,7 @@ export default function Canvas() {
       const width = window.innerWidth;
       setCurrentWidth(width); // 디버깅용
 
-      if (width >= 1600) {
+      if (width >= 1650) {
         // PC 크기
         setContainerSize({ width: 1400, height: 700 });
       } else {
