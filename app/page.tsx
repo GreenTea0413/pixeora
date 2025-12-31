@@ -118,8 +118,8 @@ export default function Home() {
       </header>
 
       {/* Main Content */}
-      <main className="w-full px-2 py-8">
-        <div className="max-w-[1800px] mx-auto space-y-4">
+      <main className="w-full px-8 py-8">
+        <div className="max-w-[1800px] mx-auto space-y-2">
           {/* Shortcuts Guide */}
           <ShortcutsGuide />
 
