@@ -9,6 +9,7 @@ export default function Canvas() {
   const [isDrawing, setIsDrawing] = useState(false);
   const [isPanning, setIsPanning] = useState(false);
   const [lastPanPoint, setLastPanPoint] = useState({ x: 0, y: 0 });
+  const [containerSize, setContainerSize] = useState({ width: 1024, height: 500 });
 
   const {
     canvas,
@@ -33,6 +34,28 @@ export default function Canvas() {
   useEffect(() => {
     initCanvas(32, 32);
   }, [initCanvas]);
+
+  // Responsive container size
+  useEffect(() => {
+    const updateContainerSize = () => {
+      const width = window.innerWidth;
+
+      if (width >= 1280) {
+        // PC 크기
+        setContainerSize({ width: 1400, height: 700 });
+      } else {
+        // 노트북 크기
+        setContainerSize({ width: 1024, height: 500 });
+      }
+    };
+
+    // 초기 설정
+    updateContainerSize();
+
+    // 리사이즈 이벤트 리스너
+    window.addEventListener('resize', updateContainerSize);
+    return () => window.removeEventListener('resize', updateContainerSize);
+  }, []);
 
   // Render canvas
   useEffect(() => {
@@ -199,7 +222,12 @@ export default function Canvas() {
     <div
       ref={containerRef}
       className="relative overflow-auto bg-neutral-800 rounded"
-      style={{ maxWidth: '1400px', maxHeight: '700px', width: '100%', height: '700px' }}
+      style={{
+        maxWidth: `${containerSize.width}px`,
+        maxHeight: `${containerSize.height}px`,
+        width: '100%',
+        height: `${containerSize.height}px`
+      }}
       onWheel={handleWheel}
       onContextMenu={handleContextMenu}
     >
