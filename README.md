@@ -1,34 +1,64 @@
 # Pixelket
 
 🎨 **Live Demo**: [https://pixelket.vercel.app/](https://pixelket.vercel.app/)
-웹 기반 픽셀 아트 에디터
-Claude와 함께 작업
 
-## 만든 이유
+프로젝트에 필요한 픽셀 도트 이미지를 자유롭게 만들 수 있는 웹 기반 픽셀 아트 에디터입니다.
 
-프로젝트할 때 필요한 픽셀 도트 이미지를 내 맘대로 만들기 위해서 제작했습니다.
+> 💡 **AI 협업 프로젝트**
+> 이 프로젝트는 Claude AI와 함께 개발되었으며, AI를 활용한 효율적인 개발 프로세스를 보여줍니다.
+
+## 주요 기능
+
+### 🎨 픽셀 아트 에디터
+- **그리기 도구**: 펜, 지우개, 채우기, 스포이트 (Q, W, E, R)
+- **편집 기능**: 실행 취소/다시 실행 (A, S), 전체 지우기
+- **캔버스 조작**: Alt/Cmd + 휠로 확대/축소, Shift + 드래그로 이동
+- **커스텀 커서**: 각 도구별 SVG 기반 픽셀 아트 스타일 커서
+
+### 💾 프로젝트 관리
+- **로컬 저장**: LocalStorage 기반 프로젝트 저장/불러오기
+- **내보내기**: PNG(투명 배경) / JPG(흰색 배경) 지원
+- **배율 선택**: 1x, 2x, 4x, 8x 크기로 내보내기
+- **미리보기**: 실시간 내보내기 결과 미리보기
+
+### 🌏 다국어 지원
+- 한국어/영어 UI 지원
+- Zustand 기반 언어 상태 관리
+
+### 📱 반응형 디자인
+- **3단계 브레이크포인트**: 1650px(PC) / 1500px(태블릿) / 1160px(노트북)
+- **자동 레이아웃 조정**: 화면 크기에 따른 캔버스 크기 최적화
+- **크로스 플랫폼**: Windows Alt 키 및 macOS Cmd 키 모두 지원
 
 ## 기술 스택
 
-- **Framework**: Next.js 16
+- **Framework**: Next.js 16 (App Router)
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS 4
 - **State Management**: Zustand
-- **Color Picker**: react-colorful
+- **UI Components**: Lucide Icons, react-colorful
 - **Animation**: Framer Motion
 
-## 시작하기
+## Claude AI와 함께한 개발 작업
 
-```bash
-# 저장소 클론
-git clone https://github.com/GreenTea0413/pixelket.git
-cd pixelket
+### UI/UX 최적화
+- **반응형 브레이크포인트 세분화**: 다양한 화면 크기에 최적화된 3단계 레이아웃 구현
+- **레이아웃 간격 조정**: 컴포넌트 간 여백과 패딩 최적화로 시각적 일관성 확보
+- **푸터 숨김 처리**: 불필요한 요소 제거로 캔버스 영역 극대화
 
-# 의존성 설치
-npm install
+### 크로스 플랫폼 지원
+- **macOS Cmd 키 지원**: Alt 키뿐만 아니라 Mac의 Cmd 키로도 확대/축소 가능
+- **다중 브레이크포인트 대응**: 1650px, 1500px, 1160px 기준으로 세밀한 반응형 처리
 
-# 개발 서버 실행
-npm run dev
-```
+### 사용자 경험 개선
+- **커스텀 커서 시스템**: SVG 기반 도구별 커스텀 커서로 직관적인 작업 환경 제공
+- **키보드 단축키**: Q/W/E/R/A/S 키로 빠른 도구 전환 및 편집
+- **실시간 미리보기**: 내보내기 전 결과물 실시간 확인 가능
 
-http://localhost:3000 에서 확인할 수 있습니다.
+### 상태 관리 아키텍처
+- **Zustand 기반 상태 관리**: Canvas, Project, Language 스토어 분리로 효율적인 상태 관리
+- **Undo/Redo 시스템**: 히스토리 기반 실행 취소/다시 실행 구현
+- **LocalStorage 연동**: 프로젝트 자동 저장 및 복원 기능
+
+이러한 작업들은 Claude AI와의 협업을 통해 빠르게 구현되었으며,
+AI를 활용한 코드 리팩토링, 버그 수정, 기능 개선 과정을 보여줍니다.
